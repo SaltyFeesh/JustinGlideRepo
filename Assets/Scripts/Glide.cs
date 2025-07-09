@@ -20,8 +20,7 @@ public class Glide : MonoBehaviour
     public float minSpeed;
 
     [Header("滑翔限制")]
-    private float glideTimer = 0f;
-    private bool isGliding = false;
+    private bool isGliding = true;
 
     [Header("空气阻力")]
     public float dragFactor = 0.99f;
@@ -33,19 +32,7 @@ public class Glide : MonoBehaviour
 
     void Update()
     {
-        // 按下空格开始滑翔（可替换为跳跃后自动滑翔）
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            if (isGliding)
-            {
-                StopGlide();
-            }
-            else
-            {
-                StartGlide();
-            }
-        }
-
+     
         if (!isGliding)
             return;
 
@@ -85,9 +72,5 @@ public class Glide : MonoBehaviour
         speed = 5f; // 初始速度
     }
 
-    void StopGlide()
-    {
-        isGliding = false;
-        rb.gravityScale = 0.8f;
-    }
+   
 }
