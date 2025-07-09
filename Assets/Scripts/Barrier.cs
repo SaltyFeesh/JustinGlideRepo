@@ -1,9 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
+using System;
 
 public class Barrier : MonoBehaviour
 {
+
+    public static event Action onPlayerDied;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,7 +27,14 @@ public class Barrier : MonoBehaviour
         
         if(collision.gameObject.tag == "Player")
         {
-            Destroy(collision.gameObject);
+            //Destroy(collision.gameObject);
+            Die();
+        
         }     
+    }
+
+    private void Die()
+    {
+        onPlayerDied?.Invoke(); 
     }
 }
