@@ -7706,7 +7706,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1596516651}
   - component: {fileID: 1596516650}
-  - component: {fileID: 1596516652}
   m_Layer: 0
   m_Name: MainBackground
   m_TagString: Untagged
@@ -7781,19 +7780,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
---- !u!114 &1596516652
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1596516649}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 824f09b377344b34a8f259c7c8894e76, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerTransform: {fileID: 1108182826}
 --- !u!4 &1619256191 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8439776723588610074, guid: 0591112691106c449b82f98d68052ba5, type: 3}
@@ -8237,7 +8223,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1659617748}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 824f09b377344b34a8f259c7c8894e76, type: 3}
   m_Name: 
@@ -8368,14 +8354,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1659617748}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 812e7f36f1e36bb40927fcc7291025ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1108182826}
   farBackground: {fileID: 0}
-  middleBackground: {fileID: 0}
+  middleBackground: {fileID: 1596516651}
 --- !u!1001 &1666212891
 PrefabInstance:
   m_ObjectHideFlags: 0
