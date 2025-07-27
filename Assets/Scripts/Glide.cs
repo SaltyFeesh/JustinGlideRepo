@@ -8,22 +8,24 @@ public class Glide : MonoBehaviour
 {
     private Rigidbody2D rb;
 
-    [Header("ËÙ¶Èµ÷Õû")]
-    public float upwardSlowFactor = 5f;   // Ì§Í·Ê±ËÙ¶È¼õ»º±¶ÂÊ
-    public float downwardBoostFactor = 1.5f; // ¸©³åÊ±ËÙ¶ÈÔö¼Ó±¶ÂÊ
+    [Header("ï¿½Ù¶Èµï¿½ï¿½ï¿½")]
+    public float upwardSlowFactor = 5f;   // Ì§Í·Ê±ï¿½Ù¶È¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    public float downwardBoostFactor = 1.5f; // ï¿½ï¿½ï¿½ï¿½Ê±ï¿½Ù¶ï¿½ï¿½ï¿½ï¿½Ó±ï¿½ï¿½ï¿½
 
-    [Header("»¬Ïè¿ØÖÆ")]
+    [Header("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½")]
     public float speed;
     public float rotateSpeed;
     public float speedChange;
     public float maxSpeed;
     public float minSpeed;
 
-    [Header("»¬ÏèÏÞÖÆ")]
+    [Header("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½")]
     private bool isGliding = true;
 
-    [Header("¿ÕÆø×èÁ¦")]
+    [Header("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½")]
     public float dragFactor = 0.99f;
+    
+    public bool isInAir = false;
 
     void Start()
     {
@@ -32,36 +34,51 @@ public class Glide : MonoBehaviour
 
     void Update()
     {
+        if (isInAir)
+        {
+            return;
+        }
      
         if (!isGliding)
             return;
 
-        // ¿ØÖÆ×óÓÒ×ªÏò£¨Æ½»¬£©
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×ªï¿½ï¿½Æ½ï¿½ï¿½ï¿½ï¿½
         float rotateInput = 0f;
         if (Input.GetKey(KeyCode.A)) rotateInput += 1f;
         if (Input.GetKey(KeyCode.D)) rotateInput -= 1f;
 
         transform.Rotate(0f, 0f, rotateInput * rotateSpeed * Time.deltaTime);
 
-        // ¼ÆËãµ±Ç°·ÉÐÐ·½Ïò
+        // ï¿½ï¿½ï¿½ãµ±Ç°ï¿½ï¿½ï¿½Ð·ï¿½ï¿½ï¿½
         Vector2 moveDirection = transform.right * speed;
         rb.velocity = moveDirection;
 
-        // ¸©³å¼ÓËÙ / ÉÏÉý¼õËÙ£¨»ùÓÚ³¯Ïò£©
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ / ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ù£ï¿½ï¿½ï¿½ï¿½Ú³ï¿½ï¿½ï¿½
         float verticalLook = transform.right.y;
-        if (verticalLook > 0)
+        print(verticalLook);
+        if (verticalLook > 0 && verticalLook < 0.3f)
         {
-            speed -= speedChange * upwardSlowFactor * Time.deltaTime;
+            speed -= speedChange * upwardSlowFactor * Time.deltaTime * 0.3f;
+        }
+        else if (verticalLook >= 0.3f && verticalLook < 0.6f)
+        {
+            speed -= speedChange * downwardBoostFactor * Time.deltaTime * 0.6f;
         }
         else if (verticalLook < 0)
         {
             speed += speedChange * downwardBoostFactor * Time.deltaTime;
         }
 
-        // ËÙ¶ÈÏÞÖÆ
+        
+        // ï¿½Ù¶ï¿½ï¿½ï¿½ï¿½ï¿½
         speed = Mathf.Clamp(speed, minSpeed, maxSpeed);
 
-        // Ä£Äâ¿ÕÆø×èÁ¦
+        if (speed == 0)
+        {
+            // game over, reload scene
+        }
+
+        // Ä£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         rb.velocity *= dragFactor;
     }
 
@@ -69,7 +86,7 @@ public class Glide : MonoBehaviour
     {
         isGliding = true;
         rb.gravityScale = 0f;
-        speed = 5f; // ³õÊ¼ËÙ¶È
+        speed = 5f; // ï¿½ï¿½Ê¼ï¿½Ù¶ï¿½
     }
 
    
