@@ -1912,7 +1912,7 @@ SpriteRenderer:
   m_Size: {x: 47.76, y: 33.371365}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1001 &985249017
@@ -2145,7 +2145,8 @@ PrefabInstance:
       propertyPath: maxSpeed
       value: 50
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2561018652904200837, guid: bbeb3364634541b45963c9fcb804518d, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -3667,8 +3668,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1108182826}
+  cameraOffsetX: 0
+  cameraOffsetY: 0
   farBackground: {fileID: 1780719013}
   middleBackground: {fileID: 1148898203}
+  isChangingSize: 0
+  newSize: 0
+  cameraChangeSpeed: 0
 --- !u!1001 &1666212891
 PrefabInstance:
   m_ObjectHideFlags: 0

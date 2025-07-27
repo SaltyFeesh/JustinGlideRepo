@@ -6,6 +6,7 @@ public class CameraController : MonoBehaviour
 {
     public Transform target;
     public float cameraOffsetX;
+    public float cameraOffsetY;
     public Transform farBackground, middleBackground;
     private Vector2 lastPos;
 
@@ -16,7 +17,7 @@ public class CameraController : MonoBehaviour
 
     void Update()
     {
-        transform.position = new Vector3(target.position.x+cameraOffsetX, target.position.y, transform.position.z);
+        transform.position = new Vector3(target.position.x+cameraOffsetX, target.position.y+ cameraOffsetY, transform.position.z);
 
         Vector2 amountToMove = new Vector2(transform.position.x - lastPos.x, transform.position.y - lastPos.y);
 
